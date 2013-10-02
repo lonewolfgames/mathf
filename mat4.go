@@ -641,6 +641,83 @@ func ( this *Mat4 ) MakeRotationZ( angle float32 ) *Mat4{
 	return this
 }
 
+// returns frustum matrix
+func ( this *Mat4 ) MakeFrustum( left, right, bottom, top, near, far float32 ) *Mat4{
+	rl := 1 / ( right - left )
+	tb := 1 / ( top - bottom )
+	nf := 1 / ( near - far )
+	
+	this[0] = ( near * 2 ) * rl
+	this[1] = 0
+	this[2] = 0
+	this[3] = 0
+	this[4] = 0
+	this[5] = ( near * 2 ) * tb
+	this[6] = 0
+	this[7] = 0
+	this[8] = ( right + left ) * rl
+	this[9] = ( top + bottom ) * tb
+	this[10] = ( far + near ) * nf
+	this[11] = -1
+	this[12] = 0
+	this[13] = 0
+	this[14] = ( far * near * 2 ) * nf
+	this[15] = 0
+	
+	return this
+}
+
+// returns perspective matrix
+func ( this *Mat4 ) MakePerspective( fov, aspect, near, far float32 ) *Mat4{
+	f := 1 / float32(math.Atan( float64(fov * 0.5) ))
+	nf := 1 / ( near - far )
+	
+	this[0] = f / aspect
+	this[1] = 0
+	this[2] = 0
+	this[3] = 0
+	this[4] = 0
+	this[5] = f
+	this[6] = 0
+	this[7] = 0
+	this[8] = 0
+	this[9] = 0
+	this[10] = ( far + near ) * nf
+	this[11] = -1
+	this[12] = 0
+	this[13] = 0
+	this[14] = ( 2 * far * near ) * nf
+	this[15] = 0
+	
+	return this
+}
+
+// returns orthographic matrix
+func ( this *Mat4 ) MakeOrthographic( left, right, bottom, top, near, far float32 ) *Mat4{
+	lr := 1 / ( left - right )
+	bt := 1 / ( bottom - top )
+	nf := 1 / ( near - far )
+	
+	this[0] = -2 * lr
+	this[1] = 0
+	this[2] = 0
+	this[3] = 0
+	this[4] = 0
+	this[5] = -2 * bt
+	this[6] = 0
+	this[7] = 0
+	this[8] = 0
+	this[9] = 0
+	this[10] = 2 * nf
+	this[11] = 0
+	this[12] = ( left + right ) * lr
+	this[13] = ( top + bottom ) * bt
+	this[14] = ( far + near ) * nf
+	this[15] = 1
+	
+	return this
+}
+
 // sets values from Quat
 func ( this *Mat4 ) FromQuat( q *Quat ) *Mat4{
 	x, y, z, w := q[0], q[1], q[2], q[3]
