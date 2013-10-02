@@ -10,11 +10,11 @@ import (
 type Mat32 [6]float32
 
 // returns new Mat32
-func NewMat32() *Mat32{
+func NewMat32( m11, m12, m13, m21, m22, m23 float32 ) *Mat32{
 	this := new( Mat32 )
 	
-	this[0], this[2], this[4] = 1, 0, 0
-	this[1], this[3], this[5] = 0, 1, 0
+	this[0], this[2], this[4] = m11, m12, m13
+	this[1], this[3], this[5] = m21, m22, m23
 	
 	return this
 }

@@ -9,10 +9,10 @@ import (
 type Quat [4]float32
 
 // returns new Quat
-func NewQuat() *Quat{
+func NewQuat( x, y, z, w float32 ) *Quat{
 	this := new( Quat )
 	
-	this[0], this[1], this[2], this[3] = 0, 0, 0, 1
+	this[0], this[1], this[2], this[3] = x, y, z, w
 	
 	return this
 }

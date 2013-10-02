@@ -10,13 +10,13 @@ import (
 type Mat4 [16]float32
 
 // returns new Mat4
-func NewMat4() *Mat4{
+func NewMat4( m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44 float32 ) *Mat4{
 	this := new( Mat4 )
 	
-	this[0], this[4], this[8], this[12] = 1, 0, 0, 0 
-	this[1], this[5], this[9], this[13] = 0, 1, 0, 0 
-	this[2], this[6], this[10], this[14] = 0, 0, 1, 0 
-	this[3], this[7], this[11], this[15] = 0, 0, 0, 1
+	this[0], this[4], this[8], this[12] = m11, m12, m13, m14
+	this[1], this[5], this[9], this[13] = m21, m22, m23, m24
+	this[2], this[6], this[10], this[14] = m31, m32, m33, m34
+	this[3], this[7], this[11], this[15] = m41, m42, m43, m44
 	
 	return this
 }

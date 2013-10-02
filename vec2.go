@@ -57,11 +57,20 @@ func ( this *Vec2 ) VAdd( a, b *Vec2 ) *Vec2{
 	return this
 }
 
+// adds scalar to this
+func ( this *Vec2 ) SAdd( s float32 ) *Vec2{
+	
+	this[0] += s
+	this[1] += s
+	
+	return this
+}
+
 // subtracts other from this
 func ( this *Vec2 ) Sub( other *Vec2 ) *Vec2{
 	
-	this[0] += other[0]
-	this[1] += other[1]
+	this[0] -= other[0]
+	this[1] -= other[1]
 	
 	return this
 }
@@ -71,6 +80,15 @@ func ( this *Vec2 ) VSub( a, b *Vec2 ) *Vec2{
 	
 	this[0] = a[0] - b[0]
 	this[1] = a[1] - b[1]
+	
+	return this
+}
+
+// adds scalar to this
+func ( this *Vec2 ) SSub( s float32 ) *Vec2{
+	
+	this[0] -= s
+	this[1] -= s
 	
 	return this
 }
@@ -284,6 +302,15 @@ func ( this *Vec2 ) Clamp( min, max *Vec2 ) *Vec2{
 	
 	if this[0] > max[0] { this[0] = max[0] }
 	if this[1] > max[1] { this[1] = max[1] }
+	
+	return this
+}
+
+// clamps each element between 0 and 1
+func ( this *Vec2 ) Clamp01() *Vec2{
+	
+	this[0] = Clamp01( this[0] )
+	this[1] = Clamp01( this[1] )
 	
 	return this
 }

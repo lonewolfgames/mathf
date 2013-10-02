@@ -61,6 +61,17 @@ func ( this *Color ) CAdd( a, b *Color ) *Color{
 	return this
 }
 
+// adds scalar to this
+func ( this *Color ) SAdd( s float32 ) *Color{
+	
+	this[0] += s
+	this[1] += s
+	this[2] += s
+	this[3] += s
+	
+	return this
+}
+
 // subtracts other from this
 func ( this *Color ) Sub( other *Color ) *Color{
 	
@@ -77,6 +88,17 @@ func ( this *Color ) CSub( a, b *Color ) *Color{
 	this[0] = a[0] - b[0]
 	this[1] = a[1] - b[1]
 	this[2] = a[2] - b[2]
+	
+	return this
+}
+
+// subtracts scalar from this
+func ( this *Color ) SSub( s float32 ) *Color{
+	
+	this[0] -= s
+	this[1] -= s
+	this[2] -= s
+	this[3] -= s
 	
 	return this
 }
@@ -273,6 +295,17 @@ func ( this *Color ) Clamp( min, max *Color ) *Color{
 	if this[1] > max[1] { this[1] = max[1] }
 	if this[2] > max[2] { this[2] = max[2] }
 	if this[3] > max[3] { this[3] = max[3] }
+	
+	return this
+}
+
+// clamps each element between 0 and 1
+func ( this *Color ) Clamp01() *Color{
+	
+	this[0] = Clamp01( this[0] )
+	this[1] = Clamp01( this[1] )
+	this[2] = Clamp01( this[2] )
+	this[3] = Clamp01( this[3] )
 	
 	return this
 }
