@@ -9,10 +9,10 @@ import (
 type Quat [4]float32
 
 // returns new Quat
-func NewQuat( x, y, z, w float32 ) *Quat{
+func NewQuat() *Quat{
 	this := new( Quat )
 	
-	this[0], this[1], this[2], this[3] = x, y, z, w
+	this[0], this[1], this[2], this[3] = 0, 0, 0, 1
 	
 	return this
 }
@@ -400,7 +400,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 	trace := m11 + m22 + m33
 	var s, invS float32
 	
-	if( trace > 0 ){
+	if trace > 0 {
 		s = 0.5 / float32( math.Sqrt( float64( trace + 1 ) ) )
 		
 		this[3] = 0.25 / s
@@ -408,7 +408,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 		this[1] = ( m13 - m31 ) * s
 		this[2] = ( m21 - m12 ) * s
 		
-	}else if( m11 > m22 && m11 > m33 ){
+	}else if m11 > m22 && m11 > m33 {
 		s = 2 * float32( math.Sqrt( float64( 1 + m11 - m22 - m33 ) ) )
 		invS = 1 / s
 		
@@ -417,7 +417,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 		this[1] = ( m12 + m21 ) * invS
 		this[2] = ( m13 + m31 ) * invS
 		
-	}else if( m22 > m33 ){
+	}else if m22 > m33 {
 		s = 2 * float32( math.Sqrt( float64( 1 + m22 - m11 - m33 ) ) )
 		invS = 1 / s
 		
@@ -447,7 +447,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 	trace := m11 + m22 + m33
 	var s, invS float32
 	
-	if( trace > 0 ){
+	if trace > 0 {
 		s = 0.5 / float32( math.Sqrt( float64( trace + 1 ) ) )
 		
 		this[3] = 0.25 / s
@@ -455,7 +455,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 		this[1] = ( m13 - m31 ) * s
 		this[2] = ( m21 - m12 ) * s
 		
-	}else if( m11 > m22 && m11 > m33 ){
+	}else if m11 > m22 && m11 > m33 {
 		s = 2 * float32( math.Sqrt( float64( 1 + m11 - m22 - m33 ) ) )
 		invS = 1 / s
 		
@@ -464,7 +464,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 		this[1] = ( m12 + m21 ) * invS
 		this[2] = ( m13 + m31 ) * invS
 		
-	}else if( m22 > m33 ){
+	}else if m22 > m33 {
 		s = 2 * float32( math.Sqrt( float64( 1 + m22 - m11 - m33 ) ) )
 		invS = 1 / s
 		

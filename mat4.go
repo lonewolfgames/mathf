@@ -10,13 +10,13 @@ import (
 type Mat4 [16]float32
 
 // returns new Mat4
-func NewMat4( m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44 float32 ) *Mat4{
+func NewMat4() *Mat4{
 	this := new( Mat4 )
 	
-	this[0], this[4], this[8], this[12] = m11, m12, m13, m14
-	this[1], this[5], this[9], this[13] = m21, m22, m23, m24
-	this[2], this[6], this[10], this[14] = m31, m32, m33, m34
-	this[3], this[7], this[11], this[15] = m41, m42, m43, m44
+	this[0], this[4], this[8], this[12] = 1, 0, 0, 0
+	this[1], this[5], this[9], this[13] = 0, 1, 0, 0
+	this[2], this[6], this[10], this[14] = 0, 0, 1, 0
+	this[3], this[7], this[11], this[15] = 0, 0, 0, 1
 	
 	return this
 }
@@ -268,29 +268,12 @@ func ( this *Mat4 ) Identity() *Mat4{
 // transposes this across diagonal
 func ( this *Mat4 ) Transpose() *Mat4{
 	
-	tmp := this[1]
-	this[1] = this[4]
-	this[4] = tmp
-	
-	tmp = this[2]
-	this[2] = this[8]
-	this[8] = tmp
-	
-	tmp = this[6]
-	this[6] = this[9]
-	this[9] = tmp
-	
-	tmp = this[3]
-	this[3] = this[12]
-	this[12] = tmp
-	
-	tmp = this[7]
-	this[7] = this[13]
-	this[13] = tmp
-	
-	tmp = this[11]
-	this[11] = this[14]
-	this[14] = tmp
+	this[1], this[4] = this[4], this[1]
+	this[2], this[8] = this[8], this[2]
+	this[6], this[9] = this[9], this[6]
+	this[3], this[12] = this[12], this[3]
+	this[7], this[13] = this[14], this[7]
+	this[11], this[14] = this[14], this[11]
 	
 	return this
 }
@@ -377,7 +360,7 @@ func ( this *Mat4 ) Decompose( position, scale *Vec3, rotation *Quat ) *Mat4{
 	
 	trace = m11 + m22 + m33
 	
-	if( trace > 0 ){
+	if( trace > 0 ) {
 		s = 0.5 / float32(math.Sqrt( float64(trace + 1) ))
 		
 		w = 0.25 / s
@@ -385,7 +368,7 @@ func ( this *Mat4 ) Decompose( position, scale *Vec3, rotation *Quat ) *Mat4{
 		y = ( m13 - m31 ) * s
 		z = ( m21 - m12 ) * s
 		
-	}else if( m11 > m22 && m11 > m33 ){
+	}else if( m11 > m22 && m11 > m33 ) {
 		s = 2 * float32(math.Sqrt( float64(1 + m11 - m22 - m33) ))
 		
 		w = ( m32 - m23 ) / s
@@ -393,7 +376,7 @@ func ( this *Mat4 ) Decompose( position, scale *Vec3, rotation *Quat ) *Mat4{
 		y = ( m12 + m21 ) / s
 		z = ( m13 + m31 ) / s
 		
-	}else if( m22 > m33 ){
+	}else if( m22 > m33 ) {
 		s = 2 * float32(math.Sqrt( float64(1 + m22 - m11 - m33) ))
 		
 		w = ( m13 - m31 ) / s

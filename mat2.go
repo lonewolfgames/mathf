@@ -10,11 +10,11 @@ import (
 type Mat2 [4]float32
 
 // returns new Mat2
-func NewMat2( m11, m12, m21, m22 float32 ) *Mat2{
+func NewMat2() *Mat2{
 	this := new( Mat2 )
 	
-	this[0], this[2] = m11, m12
-	this[1], this[3] = m21, m22
+	this[0], this[2] = 1, 0
+	this[1], this[3] = 0, 1
 	
 	return this
 }
@@ -148,9 +148,7 @@ func ( this *Mat2 ) Identity() *Mat2{
 // transposes this across diagonal
 func ( this *Mat2 ) Transpose() *Mat2{
 	
-	tmp := this[1]
-	this[1] = this[2]
-	this[2] = tmp
+	this[1], this[2] = this[2], this[1]
 	
 	return this
 }

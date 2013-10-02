@@ -11,11 +11,11 @@ type AABB2 struct{
 }
 
 // returns new AABB2
-func NewAABB2( min, max *Vec2 ) *AABB2{
+func NewAABB2() *AABB2{
 	this := new( AABB2 )
 	
-	this.Min = min
-	this.Max = max
+	this.Min = NewVec2( math.MaxFloat32, math.MaxFloat32 )
+	this.Max = NewVec2( -math.MaxFloat32, -math.MaxFloat32 )
 	
 	return this
 }

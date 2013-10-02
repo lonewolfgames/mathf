@@ -10,12 +10,12 @@ import (
 type Mat3 [9]float32
 
 // returns new Mat3
-func NewMat3( m11, m12, m13, m21, m22, m23, m31, m32, m33 float32 ) *Mat3{
+func NewMat3() *Mat3{
 	this := new( Mat3 )
 	
-	this[0], this[3], this[6] = m11, m12, m13
-	this[1], this[4], this[7] = m21, m22, m23 
-	this[2], this[5], this[8] = m31, m23, m33
+	this[0], this[3], this[6] = 1, 0, 0
+	this[1], this[4], this[7] = 0, 1, 0 
+	this[2], this[5], this[8] = 0, 0, 1
 	
 	return this
 }
@@ -241,17 +241,9 @@ func ( this *Mat3 ) Identity() *Mat3{
 // transposes this across diagonal
 func ( this *Mat3 ) Transpose() *Mat3{
 	
-	tmp := this[1]
-	this[1] = this[3]
-	this[3] = tmp
-	
-	tmp = this[2]
-	this[2] = this[6]
-	this[6] = tmp
-	
-	tmp = this[5]
-	this[5] = this[7]
-	this[7] = tmp
+	this[1], this[3] = this[3], this[1]
+	this[2], this[6] = this[6], this[2]
+	this[5], this[7] = this[7], this[5]
 	
 	return this
 }

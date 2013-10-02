@@ -14,8 +14,8 @@ type AABB3 struct{
 func NewAABB3( min, max *Vec3 ) *AABB3{
 	this := new( AABB3 )
 	
-	this.Min = min
-	this.Max = max
+	this.Min = NewVec3( math.MaxFloat32, math.MaxFloat32, math.MaxFloat32 )
+	this.Max = NewVec3( -math.MaxFloat32, -math.MaxFloat32, -math.MaxFloat32 )
 	
 	return this
 }

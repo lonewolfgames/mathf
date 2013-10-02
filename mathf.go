@@ -13,6 +13,7 @@ const (
 	HALF_PI = Pi * 0.5
 	TO_RADS = Pi / 180
 	TO_DEGS = 180 / Pi
+	Inf = math.MaxFloat32
 	
 	Pi_1_16 = TWO_PI * 1/16
 	Pi_3_16 = TWO_PI * 3/16
