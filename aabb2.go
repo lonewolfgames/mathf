@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// float32 Array representing an axis aligned bounding box
+// float32 Array representing an 2D axis aligned bounding box
 type AABB2 struct{
 	Min, Max *Vec2
 }

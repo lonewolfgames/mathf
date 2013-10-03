@@ -310,6 +310,39 @@ func ( this *Color ) Clamp01() *Color{
 	return this
 }
 
+// sets values from Vec2
+func ( this *Color ) FromVec2( v *Vec2 ) *Color{
+	
+	this[0] = v[0]
+	this[1] = v[1]
+	this[2] = 0
+	this[3] = 1
+	
+	return this
+}
+
+// sets values from Vec3
+func ( this *Color ) FromVec3( v *Vec3 ) *Color{
+	
+	this[0] = v[0]
+	this[1] = v[1]
+	this[2] = v[2]
+	this[3] = 1
+	
+	return this
+}
+
+// sets values from Vec4
+func ( this *Color ) FromVec4( v *Vec4 ) *Color{
+	
+	this[0] = v[0]
+	this[1] = v[1]
+	this[2] = v[2]
+	this[3] = v[3]
+	
+	return this
+}
+
 // checks if this equals other
 func ( this *Color ) Equals( other *Color ) bool{
 	

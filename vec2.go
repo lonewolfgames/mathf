@@ -315,6 +315,24 @@ func ( this *Vec2 ) Clamp01() *Vec2{
 	return this
 }
 
+// sets values from Vec3
+func ( this *Vec2 ) FromVec3( v *Vec3 ) *Vec2{
+	
+	this[0] = v[0]
+	this[1] = v[1]
+	
+	return this
+}
+
+// sets values from Vec4
+func ( this *Vec2 ) FromVec4( v *Vec4 ) *Vec2{
+	
+	this[0] = v[0]
+	this[1] = v[1]
+	
+	return this
+}
+
 // checks if this equals other
 func ( this *Vec2 ) Equals( other *Vec2 ) bool{
 	

@@ -401,7 +401,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 	var s, invS float32
 	
 	if trace > 0 {
-		s = 0.5 / float32( math.Sqrt( float64( trace + 1 ) ) )
+		s = 0.5 / float32(math.Sqrt( float64(trace + 1) ))
 		
 		this[3] = 0.25 / s
 		this[0] = ( m32 - m23 ) * s
@@ -409,7 +409,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 		this[2] = ( m21 - m12 ) * s
 		
 	}else if m11 > m22 && m11 > m33 {
-		s = 2 * float32( math.Sqrt( float64( 1 + m11 - m22 - m33 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m11 - m22 - m33) ))
 		invS = 1 / s
 		
 		this[3] = ( m32 - m23 ) * invS
@@ -418,7 +418,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 		this[2] = ( m13 + m31 ) * invS
 		
 	}else if m22 > m33 {
-		s = 2 * float32( math.Sqrt( float64( 1 + m22 - m11 - m33 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m22 - m11 - m33) ))
 		invS = 1 / s
 		
 		this[3] = ( m13 - m31 ) * invS
@@ -427,7 +427,7 @@ func ( this *Quat ) FromMat3( m *Mat3 ) *Quat{
 		this[2] = ( m23 + m32 ) * invS
 		
 	}else{
-		s = 2 * float32( math.Sqrt( float64( 1 + m33 - m11 - m22 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m33 - m11 - m22) ))
 		invS = 1 / s
 		
 		this[3] = ( m21 - m12 ) * invS
@@ -448,7 +448,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 	var s, invS float32
 	
 	if trace > 0 {
-		s = 0.5 / float32( math.Sqrt( float64( trace + 1 ) ) )
+		s = 0.5 / float32(math.Sqrt( float64(trace + 1) ))
 		
 		this[3] = 0.25 / s
 		this[0] = ( m32 - m23 ) * s
@@ -456,7 +456,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 		this[2] = ( m21 - m12 ) * s
 		
 	}else if m11 > m22 && m11 > m33 {
-		s = 2 * float32( math.Sqrt( float64( 1 + m11 - m22 - m33 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m11 - m22 - m33) ))
 		invS = 1 / s
 		
 		this[3] = ( m32 - m23 ) * invS
@@ -465,7 +465,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 		this[2] = ( m13 + m31 ) * invS
 		
 	}else if m22 > m33 {
-		s = 2 * float32( math.Sqrt( float64( 1 + m22 - m11 - m33 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m22 - m11 - m33) ))
 		invS = 1 / s
 		
 		this[3] = ( m13 - m31 ) * invS
@@ -474,7 +474,7 @@ func ( this *Quat ) FromMat4( m *Mat4 ) *Quat{
 		this[2] = ( m23 + m32 ) * invS
 		
 	}else{
-		s = 2 * float32( math.Sqrt( float64( 1 + m33 - m11 - m22 ) ) )
+		s = 2 * float32(math.Sqrt( float64(1 + m33 - m11 - m22) ))
 		invS = 1 / s
 		
 		this[3] = ( m21 - m12 ) * invS
